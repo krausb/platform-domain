@@ -80,6 +80,7 @@ lazy val commonSettings =
     Compile / unmanagedSourceDirectories := Seq((Compile / scalaSource).value),
     Test / unmanagedSourceDirectories := Seq((Test / scalaSource).value),
     sourceGenerators in Compile += (avroScalaGenerate in Compile).taskValue,
+    credentials += credentialsProvider(),
     wartremoverWarnings in (Compile, compile) ++= Warts.unsafe
 )
 
