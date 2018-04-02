@@ -1,0 +1,67 @@
+/*
+ * Copyright (C) 2018  Bastian Kraus
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+@namespace("io.streamarchitect.platform.domain.telemetry")
+protocol TelemetryData {
+
+  /** Metadata */
+  record Meta {
+    /** device id (uuid) */
+    string  deviceId;
+    /** session id (uuid) */
+    string  sessionId;
+    /** UTC timestamp of device occurence */
+    long    timeOfOccurrence;
+    /** UTC timestamp of platform receipt */
+    long    timeOfReceipt;
+  }
+
+  /** GPS Position */
+  record Position {
+    /** longitude */
+    double longitude;
+    /** latitude */
+    double lat;
+    /** altitude */
+    double alt;
+    /** heading */
+    int heading;
+  }
+
+  /** Raw Telemetry */
+  record Telemetry {
+    /** metadata */
+    Meta meta;
+    /** telemetry id */
+    string telemetryId;
+    /** either as double or opaque data as byte array */
+    union{ double, bytes } telemetryValue;
+  }
+
+  /** Positioned Telemetry */
+  record PositionedTelemetry {
+    /** metadata */
+    Meta meta;
+    /** telemetry id */
+    string telemetryId;
+    /** position of the telemetry */
+    Position position;
+    /** either as double or opaque data as byte array */
+    union{ double, bytes } telemetryValue;
+  }
+
+}
