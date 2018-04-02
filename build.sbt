@@ -6,7 +6,6 @@ lazy val `streamarchitect-io-platform-domain` =
   project
     .in(file("."))
     .settings(settings)
-    .settings(settings ++ avroSettings)
     .settings(
       libraryDependencies ++= Seq(
         library.scalaCheck % Test,
@@ -58,7 +57,8 @@ lazy val settings =
   commonSettings ++
   scalafmtSettings ++
   publishSettings ++
-  releaseSettings
+  releaseSettings ++
+  avroSettings
 
 lazy val commonSettings =
   Seq(
@@ -79,8 +79,8 @@ lazy val commonSettings =
     ),
     Compile / unmanagedSourceDirectories := Seq((Compile / scalaSource).value),
     Test / unmanagedSourceDirectories := Seq((Test / scalaSource).value),
-    sourceGenerators in Compile += (avroScalaGenerate in Compile).taskValue,
     credentials += credentialsProvider(),
+    updateOptions := updateOptions.value.withGigahorse(false),
     wartremoverWarnings in (Compile, compile) ++= Warts.unsafe
 )
 
