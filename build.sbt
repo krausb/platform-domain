@@ -57,8 +57,7 @@ lazy val settings =
   commonSettings ++
   scalafmtSettings ++
   publishSettings ++
-  releaseSettings ++
-  avroSettings
+  releaseSettings
 
 lazy val commonSettings =
   Seq(
@@ -79,6 +78,7 @@ lazy val commonSettings =
     ),
     Compile / unmanagedSourceDirectories := Seq((Compile / scalaSource).value),
     Test / unmanagedSourceDirectories := Seq((Test / scalaSource).value),
+    sourceGenerators in Compile += (avroScalaGenerate in Compile).taskValue,
     credentials += credentialsProvider(),
     updateOptions := updateOptions.value.withGigahorse(false),
     wartremoverWarnings in (Compile, compile) ++= Warts.unsafe
@@ -176,5 +176,3 @@ def releaseStepsProvider(): Seq[ReleaseStep] = {
 lazy val releaseSettings = Seq(
   releaseProcess := releaseStepsProvider()
 )
-
-lazy val avroSettings = sbtavrohugger.SbtAvrohugger.specificAvroSettings
