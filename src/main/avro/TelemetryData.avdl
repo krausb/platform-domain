@@ -32,10 +32,10 @@ protocol TelemetryData {
 
   /** GPS Position */
   record Position {
-    /** longitude */
-    double longitude;
     /** latitude */
     double latitude;
+    /** longitude */
+    double longitude;
     /** altitude */
     double altitude;
     /** heading */
