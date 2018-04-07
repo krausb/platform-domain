@@ -1,0 +1,12 @@
+<Appenders>
+    <RollingRandomAccessFile name="RollingRandomAccessFile" fileName="${sys:submodule}.log"
+                             filePattern="${sys:submodule}-%d{MM-dd-yyyy}-%i.log.gz">
+        <JsonLayout compact="true"/>
+        <Policies>
+            <TimeBasedTriggeringPolicy interval="24" modulate="true"/>
+        </Policies>
+    </RollingRandomAccessFile>
+    <Console name="Stdout" target="SYSTEM_OUT">
+        <PatternLayout pattern="%d %p %c{1.} [%t] %m%n"/>
+    </Console>
+</Appenders>

@@ -48,8 +48,10 @@ protocol TelemetryData {
     Meta meta;
     /** telemetry id */
     string telemetryId;
-    /** either as double or opaque data as byte array */
-    union{ double, bytes } telemetryValue;
+    /** double data */
+    union{ null, double } valueData;
+    /** opaque data as byte array */
+    union{ null, bytes } opaqueData;
   }
 
   /** Positioned Telemetry */
@@ -60,8 +62,10 @@ protocol TelemetryData {
     string telemetryId;
     /** position of the telemetry */
     Position position;
-    /** either as double or opaque data as byte array */
-    union{ double, bytes } telemetryValue;
+    /** double data */
+    union{ null, double } valueData;
+    /** opaque data as byte array */
+    union{ null, bytes } opaqueData;
   }
 
 }

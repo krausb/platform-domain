@@ -1,0 +1,13 @@
+
+<Loggers>
+
+    <Logger name="io.streamarchitect" level="DEBUG">
+        <AppenderRef ref="RollingRandomAccessFile"/>
+        <AppenderRef ref="Stdout"/>
+    </Logger>
+
+    <Root level="ERROR">
+        <AppenderRef ref="Stdout"/>
+    </Root>
+
+</Loggers>
